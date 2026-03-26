@@ -1,42 +1,53 @@
 # LUMI-Golf
 
-LUMI-Golf is an exploratory branch of my independent LUMI research project, adapted for the OpenAI Parameter Golf challenge.
+LUMI-Golf is an exploratory compact-model branch derived from my independent LUMI research project.
 
-LUMI is a personal research project focused on compact, compression-oriented, structure-biased models. In my current small-scale experiments, I have observed strong results on structure-generalization tasks, including:
-- reliable grokking behavior on modular arithmetic across multiple seeds
-- consistent superiority on a structural holdout benchmark under out-of-distribution generalization
+The broader LUMI direction focuses on **compact, compression-oriented, structure-biased models**. The working hypothesis is that small models may gain stronger generalization not only from scale, but from architectural inductive bias that favors compression and structured abstraction.
 
-This repository is **pre-submission** and focused on building a separate Parameter Golf-oriented branch rather than submitting my current LUMI project directly.
+This repository is intentionally **public-safe**:
+- it describes the research direction and benchmark evidence,
+- it shares benchmark specifications and aggregated results,
+- it does **not** expose the full implementation details of the underlying architecture.
 
-## Theoretical direction
+## Why this branch exists
 
-LUMI-Golf is derived from LUMI-Arch, an independent research direction centered on a simple hypothesis:
+The current LUMI research workflow has already produced encouraging small-scale evidence:
 
-> small models can become more capable not only through better data, but also through stronger compression-oriented inductive bias.
+- **mod_arith_grokking**: multi-seed reliability and speed advantage under a weight-decay-driven grokking setting
+- **bracket_structural_holdout**: formal benchmark showing consistent balanced-accuracy superiority under structural out-of-distribution evaluation
+- **dsl_distributive**: formal benchmark showing strong structural OOD generalization on expression-tree detection
 
-Instead of treating scale alone as the main path to intelligence, LUMI focuses on compact, structure-biased modeling. The guiding idea is that models that compress structure well may also generalize rules more reliably under small-model constraints.
+These results motivated a separate branch for compact-model and artifact-efficient exploration.
 
-In my current research workflow, this direction has already shown encouraging evidence on synthetic structure-generalization tasks:
-- reliable grokking-style behavior on modular arithmetic
-- consistent superiority on a structural holdout benchmark under out-of-distribution generalization
+## Current public evidence
 
-LUMI-Golf does **not** directly expose the full LUMI implementation. It is a separate exploratory branch intended to test whether the underlying ideas — compression-oriented modeling, compact structure-aware representations, and parameter-efficient small-model design — can transfer to the Parameter Golf setting.
+### 1) mod_arith_grokking
+- LUMI groks reliably across seeds under the official wd=1.0 setting.
+- Baseline sometimes improves, but is much less reliable and slower.
+- A parameter-matched baseline still does not remove the gap.
 
-## Current evidence from LUMI
+### 2) bracket_structural_holdout
+- LUMI consistently outperforms Baseline on balanced accuracy across confirmatory seeds.
+- This benchmark is now treated as a formal benchmark rather than an exploratory candidate.
 
-The broader LUMI research project has already produced promising small-scale results relevant to this direction:
+### 3) dsl_distributive
+- LUMI consistently outperforms Baseline on a structural OOD expression-tree benchmark.
+- The matched-baseline check does not remove the gap.
 
-- strong modular arithmetic grokking behavior across multiple seeds
-- a structural holdout benchmark with consistent balanced-accuracy gains over a baseline
-- evidence that compact, structure-biased models can show reliable advantages on rule generalization under constrained settings
+## What this repository is for
 
-These results do not yet constitute a direct Parameter Golf submission. Instead, they motivate building a dedicated exploratory branch for compact language-model experiments under the challenge constraints.
+This repository is **not** a direct release of the full LUMI implementation.
+Instead, it is a public-facing research companion used to:
 
-## Current goal
+- document benchmark specifications,
+- publish aggregated evidence,
+- state what is currently supported vs. what remains unresolved,
+- prepare future compact-model / Parameter Golf style explorations.
 
-The goal is to test whether compact structure-aware inductive biases, compression-oriented design choices, and efficient small-model ideas can transfer to the Parameter Golf setting under strict artifact-size constraints.
-## Status
+## Current status
 
-- exploratory
-- non-record direction first
-- building toward a future Parameter Golf submission
+- exploratory public branch
+- benchmark evidence documented
+- implementation details intentionally limited
+- suitable as a research overview / challenge companion repository
+
