@@ -1,115 +1,97 @@
-# Results (public-safe summary)
+# Results
 
-This file summarizes the current **public-safe** benchmark evidence for LUMI.  
-It reports benchmark-level outcomes and aggregated comparisons without exposing the full internal implementation.
+This document summarizes the current public-safe benchmark evidence behind LUMI-Arch.
 
-## Official benchmark set
+The goal here is not to expose the full internal recipe of the system, but to show the strongest currently supported benchmark signals in a compact and verifiable form.
 
-The current active benchmark set contains three tasks:
+## Evaluation stance
 
-1. `mod_arith_grokking`
-2. `bracket_structural_holdout`
-3. `dsl_distributive`
+The current public benchmark set focuses on three questions:
 
-`boolean_logic` is frozen and `bracket_stack` is retired.
+1. **Can a compact architecture show reliable rule generalization under constrained settings?**
+2. **Can it generalize structural patterns beyond the exact forms seen during training?**
+3. **Does the observed advantage remain after stronger baseline comparisons, including parameter-matched checks?**
 
----
+The active public benchmark set currently consists of:
 
-## 1) mod_arith_grokking
+- `mod_arith_grokking`
+- `bracket_structural_holdout`
+- `dsl_distributive`
 
-### Setup
-- Task: modular arithmetic
-- Key public condition: `weight_decay=1.0`
-- Main question: whether the model enters a reliable grokking regime under constrained small-model training
+## Headline summary
 
-### Main result
-- **LUMI**: groks in **4/4 seeds**
-- **Baseline**: groks in **1/4 seeds**
-- When Baseline does grok, it is substantially slower.
-- A **parameter-matched baseline** still does not reproduce the same reliability.
+Across the current active benchmark set, LUMI-Arch shows three recurring signals:
 
-### Public interpretation
-The current evidence supports a **reliability and speed advantage** for LUMI under this benchmark.
-The result should not be phrased as “Baseline is impossible,” but rather as:
-- LUMI groks **more reliably**
-- LUMI reaches the threshold **faster**
-- the gap is **not removed** by simple parameter matching
+- **reliable compact-rule generalization**
+- **strong structural OOD performance**
+- **advantages that are not removed by simply scaling a comparison baseline to a similar parameter budget**
 
----
+These results support the broader research hypothesis that compact models may benefit from stronger architectural bias toward efficient structured abstraction.
 
-## 2) bracket_structural_holdout
+## Benchmark summary
 
-### Setup
-- Structural OOD bracket benchmark
-- Sampled-safe generation
-- Train/test split emphasizes longer unseen structures at test time
-- Primary metric: **test balanced accuracy**
+| Benchmark | Public interpretation | Current signal |
+|---|---|---|
+| `mod_arith_grokking` | Reliability and speed of grokking-style generalization under constrained settings | LUMI-Arch shows stronger multi-seed reliability and earlier threshold crossing than baseline comparisons |
+| `bracket_structural_holdout` | Structural out-of-distribution generalization under strong class imbalance | LUMI-Arch shows consistent balanced-accuracy superiority across confirmatory seeds |
+| `dsl_distributive` | Structural OOD generalization on expression-tree detection | LUMI-Arch shows a strong mean gap over baseline, and the gap is not removed by a matched-baseline check |
 
-### Confirmatory result
-- **LUMI mean balanced accuracy**: **0.783**
-- **Baseline mean balanced accuracy**: **0.632**
-- **Mean delta**: **+0.151**
+## Public-safe benchmark notes
 
-### Supporting evidence
-- Formal confirmatory rerun completed
-- Balanced-accuracy gate passed
-- F1 and precision differences support the interpretation that LUMI is not simply overpredicting the positive class
+### 1. mod_arith_grokking
 
-### Public interpretation
-This benchmark now serves as a **formal structural OOD benchmark** showing that LUMI retains a consistent advantage when evaluation moves beyond raw accuracy and toward imbalance-aware structural generalization.
+This benchmark is important because it tests more than final score. It tests whether a compact model reaches useful generalization **reliably** and **quickly** across seeds under a constrained setup.
 
----
+The strongest current public conclusion is:
 
-## 3) dsl_distributive
+- LUMI-Arch reaches successful grokking-style behavior more reliably than the baseline family
+- when the baseline does succeed, it does so less reliably and typically more slowly
+- stronger baseline variants improve somewhat, but the core gap is not removed
 
-### Setup
-- Fully parenthesized binary arithmetic expressions
-- Binary classification: whether a distributive-pattern subtree exists anywhere in the expression tree
-- Train depth: 2–4
-- Test depth: 5–7
-- Primary metric: **test balanced accuracy**
+This is currently interpreted as evidence of an architectural advantage in reliability and efficiency under the tested setting, not as a universal impossibility claim about the baseline.
 
-### Main result
-- **LUMI mean balanced accuracy**: **0.976**
-- **Baseline mean balanced accuracy**: **0.750**
-- **Mean delta**: **+0.226**
+### 2. bracket_structural_holdout
 
-### Additional evidence
-- All official seeds pass the benchmark gate
-- The validation-to-test drop is much smaller for LUMI than for Baseline
-- A parameter-matched baseline does not remove the gap
+This benchmark was promoted from exploratory status to a formal benchmark because the gap held up under confirmatory reruns and because the primary metric was designed to avoid misleading conclusions from severe class imbalance.
 
-### Public interpretation
-This benchmark is the clearest current bridge from synthetic structure tasks toward a more code-like expression-tree setting.  
-It provides public-safe evidence that the current LUMI direction supports **structural OOD generalization** beyond trivial memorization.
+The strongest current public conclusion is:
 
----
+- LUMI-Arch consistently outperforms the baseline on balanced accuracy
+- the benchmark stresses structural out-of-distribution generalization rather than shallow memorization
+- this result is treated as part of the current formal benchmark record
 
-## Parameter-matched baseline check (G5-0)
+### 3. dsl_distributive
 
-A parameter-matched baseline was tested to address the earlier confound that the original LUMI model had more parameters than the baseline.
+This benchmark acts as a bridge from abstract structural tasks toward more expression-like symbolic structure.
 
-### Public result
-- `dsl_distributive`: the matched baseline does **not** reduce the gap
-- `mod_arith_grokking`: the matched baseline still does **not** reproduce LUMI’s grokking reliability
+The strongest current public conclusion is:
 
-### Public interpretation
-The current evidence supports the claim that the observed advantage is **not explained by parameter count alone**.
+- LUMI-Arch shows a strong structural OOD advantage
+- increasing baseline parameter count alone does not remove the observed gap
+- the result supports the view that the strongest gains are not explained by scale alone
 
----
+## Current public interpretation
 
-## Public conclusion
+At the present stage, the benchmark record supports the following public-safe interpretation:
 
-Across the current benchmark set, the strongest public-safe claim is:
+- LUMI-Arch is a compact architecture research direction with strong evidence on structure-sensitive generalization
+- the strongest current signals appear in rule-learning, structural OOD, and reliability under constrained settings
+- simple baseline scaling does not fully explain the observed advantages on representative benchmarks
 
-> LUMI shows consistent advantages on small-model structure generalization, including reliable grokking behavior and structural out-of-distribution performance, and these advantages are not removed by a simple parameter-matched baseline.
+## What this does **not** claim
 
-## What this summary intentionally does not include
+These results do **not** yet imply:
 
-To avoid exposing implementation-sensitive details, this public summary does not include:
-- the full internal architecture specification,
-- the full training recipe,
-- implementation-critical ablation logic,
-- full checkpoint or code release.
+- that the architecture has been fully validated on large-scale natural-language language modeling
+- that every possible baseline family has been exhausted
+- that the public benchmark record exposes the complete internal mechanism behind the system
+- that benchmark success alone is sufficient to establish broad real-world superiority
 
-- For a concise public-safe summary of what is currently supported and what remains unresolved, see [claims_and_limits.md](./claims_and_limits.md).
+## Additional files
+
+- [Claims and limits](./claims_and_limits.md)
+- [Official evaluation summary (CSV)](./results/official_eval_summary.csv)
+
+## Note
+
+This file is intentionally written at the level of benchmark evidence and public interpretation. It is designed to communicate supported findings without disclosing the full implementation strategy of the underlying architecture.
