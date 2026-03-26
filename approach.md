@@ -1,19 +1,23 @@
 # Approach
 
-This repository is an exploratory Parameter Golf branch derived from my LUMI research project.
+This repository is an exploratory Parameter Golf branch derived from my independent LUMI research project.
 
-## Motivation
+## Core idea
 
-My current research suggests that compact, compression-oriented, structure-biased models can show strong rule generalization and reliable grokking behavior on small-scale benchmarks.
+The underlying hypothesis is that small models may become more capable not only through scale, but through stronger compression-oriented inductive bias and structure-aware representations.
+
+## Why this may matter
+
+In my current research workflow, these ideas have already shown promising behavior on small structure-generalization tasks, including modular arithmetic grokking and a structural holdout benchmark with consistent gains over a baseline.
 
 ## Parameter Golf direction
 
-Rather than submitting the original LUMI project directly, I want to extract the most promising ideas into a separate branch designed for:
-- compact language modeling
-- artifact-efficient design
-- parameter sharing / recurrence style ideas
-- non-record exploratory submissions first
+I do not plan to submit the current LUMI project directly. Instead, I want to transfer the most relevant ideas into a separate compact language-model branch designed for:
+- artifact-efficient modeling
+- compact structure-aware representations
+- parameter-efficient small-model design
+- exploratory non-record submissions first
 
 ## Current stage
 
-This work is at the pre-submission stage and intended to support future Parameter Golf experiments.
+This work is pre-submission and intended to support future Parameter Golf experiments.
