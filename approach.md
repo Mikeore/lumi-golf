@@ -1,52 +1,62 @@
-# LUMI-Golf
+# Approach
 
-LUMI-Golf is an exploratory compact language-model branch derived from my independent LUMI-Arch research.
+This repository is an exploratory compact language-model branch derived from my independent LUMI-Arch research.
 
-LUMI-Arch is a compact architecture research direction focused on structure-sensitive generalization under small-model constraints. The working hypothesis is that small models may gain stronger generalization not only from scale, but from architectural bias that favors efficient structured abstraction.
+## Core premise
 
-## Core idea
+The guiding premise is simple:
 
-The central hypothesis is simple:
+> small models may achieve stronger generalization not only through more scale, but through better architectural bias.
 
-> small models may become more capable not only through scale, but through stronger compression-oriented inductive bias and structure-aware sequence representations.
+In this context, “better” does not simply mean larger or more complex. It means bias that helps a compact model preserve, compress, and reuse meaningful structure under tight constraints.
 
-Instead of treating scale alone as the main path to capability, LUMI-Arch emphasizes compact, structure-aware sequence modeling. The motivating idea is that models that compress structure across multiple scales may generalize rules more reliably under constrained parameter budgets.
+## Research direction
 
-## Why this may matter
+LUMI-Arch is not presented here as a finished general-purpose system. It is an architecture research direction aimed at improving structure-sensitive generalization in compact settings.
 
-In the broader LUMI-Arch workflow, these ideas have already shown promising behavior on small structure-generalization tasks, including:
+The broader hypothesis is that compact models can benefit from:
+- stronger structure-aware sequence processing,
+- more efficient internal abstraction under limited capacity,
+- and architectural choices that favor reliable generalization rather than shallow memorization.
 
-- reliable grokking-style behavior on modular arithmetic,
-- strong performance on structural out-of-distribution benchmarks,
-- parameter-matched checks where the baseline still does not close the gap.
+This repository does not expose the exact internal recipe used in the full research workflow. Instead, it presents the direction at a level that is useful for evaluation, positioning, and future experimentation.
 
-These results do not yet constitute a direct Parameter Golf submission. They are the reason this exploratory branch exists.
+## Why this matters
 
-## Parameter Golf direction
+In the broader LUMI-Arch workflow, this direction has already shown promising behavior on small-scale tasks that stress rule learning, structural extrapolation, and difficult generalization under constrained settings.
 
-I do not plan to submit the current LUMI-Arch research code directly. Instead, the goal of this repository is to test whether the most relevant underlying ideas can transfer into a compact language-model setting shaped by strict artifact-size constraints.
+The strongest public signals so far include:
+- reliable generalization behavior across multiple seeds on compact rule-learning benchmarks,
+- formal structural holdout results under out-of-distribution evaluation,
+- and representative comparisons where increasing baseline size does not remove the observed advantage.
 
-The specific direction is to explore whether:
-- compact structure-aware representations,
-- compression-oriented design choices,
-- and parameter-efficient small-model techniques
+These outcomes suggest that the direction may be relevant not only for synthetic evaluation, but also for compact language-model research more broadly.
 
-can become useful ingredients for a future Parameter Golf-oriented implementation.
+## Why a separate branch exists
 
-## Scope
+I do not plan to submit the broader LUMI-Arch research code directly.
 
-This repository is intentionally limited in scope.
+Instead, this repository exists to support a separate exploratory track where the underlying ideas can be examined in a compact language-model context, including challenge settings that emphasize small artifacts, constrained compute, and strong evaluation pressure.
 
-It is meant to:
-- explain the architectural direction at a high level,
-- document benchmark evidence,
-- and support future compact LM / Parameter Golf style experimentation.
+In other words, this is not a release of the full architecture. It is a public-facing bridge between internal research evidence and future compact LM experimentation.
 
-It is **not** meant to expose the complete implementation details of the underlying LUMI-Arch system.
+## Scope of this repository
+
+This repository is meant to:
+- communicate the high-level research direction,
+- document benchmark evidence and limits,
+- provide a clean public-facing record of current claims,
+- and support future exploration of compact LM challenge settings.
+
+It is not meant to:
+- publish the full internal implementation,
+- disclose the exact architectural recipe,
+- or serve as a complete reproducible release of the underlying system.
 
 ## Current stage
 
-- pre-submission / exploratory
-- public-safe research companion
-- non-record direction first
+- exploratory
+- public-safe
+- benchmark-backed
 - compact LM transfer hypothesis under evaluation
+- challenge-oriented, but not yet a finalized submission
