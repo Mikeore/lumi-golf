@@ -1,8 +1,8 @@
-# Approach
+# LUMI-Golf
 
-This repository is an exploratory Parameter Golf branch derived from my independent LUMI-Arch research.
+LUMI-Golf is an exploratory compact language-model branch derived from my independent LUMI-Arch research.
 
-LUMI-Arch is a compression-oriented, multi-scale variant of linear attention for compact language-model research. It is not presented here as a finished general-purpose LLM, but as an architecture research direction aimed at improving structure-sensitive generalization under small-model constraints.
+LUMI-Arch is a compact architecture research direction focused on structure-sensitive generalization under small-model constraints. The working hypothesis is that small models may gain stronger generalization not only from scale, but from architectural bias that favors efficient structured abstraction.
 
 ## Core idea
 
