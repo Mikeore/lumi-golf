@@ -111,3 +111,5 @@ To avoid exposing implementation-sensitive details, this public summary does not
 - the full training recipe,
 - implementation-critical ablation logic,
 - full checkpoint or code release.
+
+- For a concise public-safe summary of what is currently supported and what remains unresolved, see [claims_and_limits.md](./claims_and_limits.md).
