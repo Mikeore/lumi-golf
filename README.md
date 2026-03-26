@@ -51,3 +51,9 @@ Instead, it is a public-facing research companion used to:
 - implementation details intentionally limited
 - suitable as a research overview / challenge companion repository
 
+- ## Additional notes
+
+- [Results summary](./results.md)
+- [Claims and limits](./claims_and_limits.md)
+- [Official evaluation summary (CSV)](./results/official_eval_summary.csv)
+
