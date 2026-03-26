@@ -1,6 +1,8 @@
-# Claims and limits (public-safe)
+# Claims and Limits
 
-This file separates what the current evidence supports from what would be too strong to claim publicly at this stage.
+This document states what is currently supported by the public benchmark record of LUMI-Arch, and what remains unresolved.
+
+The goal is to keep the public-facing claims stronger than hype and narrower than the full internal hypothesis.
 
 ## What the current evidence supports
 
