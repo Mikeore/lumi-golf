@@ -12,6 +12,20 @@ This repository is **pre-submission** and focused on building a separate Paramet
 
 The goal is to test whether compact structure-aware inductive biases, compression-oriented design choices, and efficient small-model ideas can transfer to the Parameter Golf setting under strict artifact-size constraints.
 
+## Theoretical direction
+
+LUMI-Golf is derived from LUMI-Arch, an independent research direction centered on a simple hypothesis:
+
+> small models can become more capable not only through better data, but also through stronger compression-oriented inductive bias.
+
+Instead of treating scale alone as the main path to intelligence, LUMI focuses on compact, structure-biased modeling. The guiding idea is that models that compress structure well may also generalize rules more reliably under small-model constraints.
+
+In my current research workflow, this direction has already shown encouraging evidence on synthetic structure-generalization tasks:
+- reliable grokking-style behavior on modular arithmetic
+- consistent superiority on a structural holdout benchmark under out-of-distribution generalization
+
+LUMI-Golf does **not** directly expose the full LUMI implementation. It is a separate exploratory branch intended to test whether the underlying ideas — compression-oriented modeling, compact structure-aware representations, and parameter-efficient small-model design — can transfer to the Parameter Golf setting.
+
 ## Status
 
 - exploratory
